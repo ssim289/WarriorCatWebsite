@@ -5,6 +5,18 @@
     <title>{{title}}</title>
 </head>
 <body>
+    <h1>Find the warrior cat of the day</h1>
+    <p>Begin by typing in any warrior cat name</p>
 
+    <ul>
+      {% for cat in cats %}
+        <li>{{ cat.character_name }} </li>
+        <li>{{ cat.clan_role }} </li>
+        <li>{{ cat.clan_name }} </li>
+        <li>{{ cat.eye_colour }} </li>
+        <li>{{ cat.fur_colour }} </li>
+        <li>{{ cat.first_introduced }} </li>
+      {% endfor %}
+    </ul>
 </body>
 </html>
