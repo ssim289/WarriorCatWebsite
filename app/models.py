@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Mapped, mapped_column
-from __init__ import db, app
+from app import db, app
 
 
 class WarriorCat(db.Model):
@@ -7,8 +7,8 @@ class WarriorCat(db.Model):
     character_name: Mapped[str]
     clan_role: Mapped[str]
     clan_name: Mapped[str]
-    eye_colour: Mapped[int]
-    fur_colour: Mapped[int]
+    eye_colour: Mapped[str]
+    fur_colour: Mapped[str]
     first_introduced: Mapped[str]
 
 with app.app_context():
