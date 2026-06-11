@@ -1,0 +1,38 @@
+{% macro render_pagination(pagination, endpoint) %}
+  <div class="page-items">
+    {{ pagination.first }} - {{ pagination.last }} of {{ pagination.total }}
+  </div>
+  <div class=pagination>
+    {% for page in pagination.iter_pages() %}
+      {% if page %}
+        {% if page != pagination.page %}
+          <a href="{{ url_for(endpoint, page=page) }}">{{ page }}</a>
+        {% else %}
+            <ul>
+                {% for cat in cats %}
+                <strong><li>{{ cat.character_name }} </li></strong>
+                <li>{{ cat.clan_role }} </li>
+                <li>{{ cat.clan_name }} </li>
+                <li>{{ cat.eye_colour }} </li>
+                <li>{{ cat.fur_colour }} </li>
+                <li>{{ cat.first_introduced }} </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+      {% else %}
+        <span class=ellipsis>…</span>
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endmacro %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+</head>
+<body>
+    {{render_pagination(cats, 'showcats')}}
+</body>
+</html>

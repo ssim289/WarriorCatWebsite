@@ -1,7 +1,7 @@
 from app import app, db
 from flask import render_template
 
-from app.warrior_cat import get_cats, add_cats
+from app.warrior_cat import get_cats
 from app.models import WarriorCat
 
 
@@ -18,8 +18,7 @@ def warriorcatsdle():
 def page_not_found(error):
     return render_template('page_not_found.html', error=error), 404
 
-@app.route("/addcats")
-def addcats():
-    add_cats()
-    cat = db.first_or_404(db.select(WarriorCat))
-    return render_template("addcats.html", title="Add Cats", cat=cat)
+@app.route("/showcats")
+def showcats():
+    page = db.paginate(db.select(WarriorCat).order_by(WarriorCat.first_introduced.desc()))
+    return render_template("all_cats.html", title="All Cats", cats=page)
