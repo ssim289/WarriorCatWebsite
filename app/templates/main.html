@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Flask App - {{title}}</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %} {{title}} {% endblock %}
+{% block content %}
     {{content}}
     <p>Go to <a href="{{url_for('warriorcatsdle')}}">Warrior Catsdle</a> </p>
-</body>
-</html>
+{% endblock %}

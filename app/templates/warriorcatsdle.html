@@ -1,22 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{title}}</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %} {{title}} {% endblock %}
+{% block content %}
     <h1>Find the warrior cat of the day</h1>
-    <p>Begin by typing in any warrior cat name</p>
+    {% if error %}
+        <div class="error-box">
+            {{ error }}
+        </div>
+    {% endif %}
+    <form method="post" action="{{url_for('submit_guess')}}" autocomplete="off">
+        <div class="autocomplete-container">
+            <label for="cat_name">Begin by typing in any warrior cat name</label>
+            <input type="text" id="cat_name" name="cat_name" autocomplete="off"> <input type="submit" value="Submit">
+            <div id="autocomplete-list" class="autocomplete-items"></div>
+            <div id="autocomplete-none" class="autocomplete-items" style="display:none;">No cats found</div>
+        </div>
 
-    <ul>
+        <div id="autocomplete-error" class="error-box" style="display:none;"></div>
+    </form>
+    <br>
+    <br>
+    {% if cats %}
+    <h2> Your guesses</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Clan name</th>
+            <th>Eye colour</th>
+            <th>Fur colour</th>
+            <th>Book first introduced in (Publish order)</th>
+        </tr>
       {% for cat in cats %}
-        <li>{{ cat.character_name }} </li>
-        <li>{{ cat.clan_role }} </li>
-        <li>{{ cat.clan_name }} </li>
-        <li>{{ cat.eye_colour }} </li>
-        <li>{{ cat.fur_colour }} </li>
-        <li>{{ cat.first_introduced }} </li>
+        <tr>
+            <td>{{ cat.character_name }} </td>
+            <td>{{ cat.clan_role }} </td>
+            <td>{{ cat.clan_name }} </td>
+            <td>{{ cat.eye_colour }} </td>
+            <td>{{ cat.fur_colour }} </td>
+            <td>{{ cat.first_introduced }} </td>
+        </tr>
       {% endfor %}
-    </ul>
-</body>
-</html>
+    </table>
+    {% endif %}
+{% endblock %}

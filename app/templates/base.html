@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <script src="{{ url_for('static', filename='logic.js')}}"></script>
+    <title>{% block title %}{% endblock %} - Warrior Catsdle</title>
+    {% endblock %}
+</head>
+<body>
+    <div id="header">
+        {% block header %}
+
+        {% endblock %}
+    </div>
+    <div id="content">{% block content %}{% endblock %}</div>
+    <div id="footer">
+        {% block footer %}
+        &copy; Copyright 2026 by <a href="https://github.com/ssim289/WarriorCatWebsite">ssim289</a>.
+        {% endblock %}
+    </div>
+</body>
+</html>

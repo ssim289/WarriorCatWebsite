@@ -1,0 +1,43 @@
+.error-box {
+    color: #b30000;
+    background: #ffe6e6;
+    border: 1px solid #b30000;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    border-radius: 4px;
+}
+
+.autocomplete-container {
+    position: relative;
+    width: 300px; /* or 100% if you want it to stretch */
+}
+
+#cat_name {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.autocomplete-items {
+    position: absolute;
+    top: 100%; /* directly below the input */
+    left: 0;
+    right: 0;
+    z-index: 1000;
+
+    background: white;
+    border: 1px solid #ccc;
+    border-top: none;
+
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.autocomplete-items div {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.autocomplete-items div:hover {
+    background: #e6e6e6;
+}

@@ -1,7 +1,8 @@
 from sqlalchemy.exc import OperationalError
 
-from app import db, app
+from . import app, db
 from app.models import WarriorCat
+from .warrior_cat import add_cats
 
 CATS = [
     {
@@ -16,7 +17,7 @@ CATS = [
 
 def get_data_from_db(model):
     try:
-        data = db.first_or_404(db.select(model))
+        data = db.session.execute(db.select(model))
         db.session.close()
         return data
     except OperationalError:
@@ -41,6 +42,7 @@ def update_database(db, existing_cats):
     db.create_all()
     for cat in existing_cats:
         db.session.merge(cat)
+    add_cats() #TODO remove this once I fix the initialise of the database.
     db.session.commit()
     print("Updated existing database")
 

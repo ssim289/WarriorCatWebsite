@@ -8,16 +8,7 @@
         {% if page != pagination.page %}
           <a href="{{ url_for(endpoint, page=page) }}">{{ page }}</a>
         {% else %}
-            <ul>
-                {% for cat in cats %}
-                <strong><li>{{ cat.character_name }} </li></strong>
-                <li>{{ cat.clan_role }} </li>
-                <li>{{ cat.clan_name }} </li>
-                <li>{{ cat.eye_colour }} </li>
-                <li>{{ cat.fur_colour }} </li>
-                <li>{{ cat.first_introduced }} </li>
-                {% endfor %}
-            </ul>
+          <strong>{{ page }}</strong>
         {% endif %}
       {% else %}
         <span class=ellipsis>…</span>
@@ -26,13 +17,19 @@
   </div>
 {% endmacro %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{title}}</title>
-</head>
-<body>
+
+{% extends "base.html" %}
+{% block title %} {{title}} {% endblock %}
+{% block content %}
+    <ul>
+        {% for cat in cats %}
+        <li> <strong> {{ cat.character_name }} </strong> </li>
+        <li>{{ cat.clan_role }} </li>
+        <li>{{ cat.clan_name }} </li>
+        <li>{{ cat.eye_colour }} </li>
+        <li>{{ cat.fur_colour }} </li>
+        <li>{{ cat.first_introduced }} </li>
+        {% endfor %}
+    </ul>
     {{render_pagination(cats, 'showcats')}}
-</body>
-</html>
+{% endblock %}
